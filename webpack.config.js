@@ -1,3 +1,5 @@
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = {
   devtool: 'source-map',
   entry: './src/barcode-to-inventory.js',
@@ -20,5 +22,10 @@ module.exports = {
         loader: 'sass-loader' // compiles Sass to CSS
       }]
     }]
-  }
+  },
+  plugins: [
+    new UglifyJSPlugin({
+      sourceMap: true
+    })
+  ]
 };

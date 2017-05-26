@@ -2,7 +2,7 @@ import './barcode-to-inventory.scss';
 import liveCapture from './live-capture';
 
 const canSupportLive = navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === 'function';
-const barcodeOutput = document.querySelector('#barcodeOutput');
+// const barcodeOutput = document.querySelector('#barcodeOutput');
 
 const liveCaptureButton = document.querySelector('button.live-capture-button');
 const liveCaptureContainer = document.querySelector('.live-capture-container');
