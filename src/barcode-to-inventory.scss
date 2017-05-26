@@ -1,0 +1,25 @@
+.live-capture-button {
+  display: none;
+}
+.capture-photo-button {
+  display: block;
+}
+
+.live-capture-container {
+    display: none;
+}
+
+button {
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 20px;
+}
+
+body.live-support {
+  .live-capture-button {
+    display: block;
+  }
+  .capture-photo-button {
+    display: none;
+  }
+}

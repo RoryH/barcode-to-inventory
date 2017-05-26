@@ -1,0 +1,44 @@
+{
+  "name": "barcode-to-inventory",
+  "version": "0.0.1",
+  "description": "Scan a barcode in the browser",
+  "main": "app/barcode-to-inventory.js",
+  "scripts": {
+    "dev": "node app/barcode-to-inventory.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saksdirect/poc-barcode-to-inventory.git"
+  },
+  "keywords": [
+    "barcode",
+    "inventory"
+  ],
+  "author": "HBC Digital",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/saksdirect/poc-barcode-to-inventory/issues"
+  },
+  "homepage": "https://github.com/saksdirect/poc-barcode-to-inventory#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "jade": "^1.11.0",
+    "quagga": "^0.11.6",
+    "webrtc-adapter": "^3.4.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "css-loader": "^0.28.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-react": "^7.0.1",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.18.1",
+    "webpack": "^2.6.1"
+  }
+}

@@ -1,0 +1,23 @@
+{
+    "parser": "babel-eslint",
+    "extends": "airbnb-base",
+    "env": {
+        "browser": true,
+        "node": true,
+        "mocha": true
+    },
+    "rules": {
+        "consistent-return": 0,
+        "one-var": [2, { "uninitialized": "always", "initialized": "never" }],
+        "one-var-declaration-per-line": [2, "initializations"],
+        "operator-linebreak": [2, "after", { "overrides": { ".": "before" } }],
+        "no-cond-assign": [2, "except-parens"],
+        "no-implicit-coercion": 2,
+        "no-unused-expressions": 0, # fix later
+        "no-useless-rename": 2, # move to preset
+        "padded-blocks": 0, # fix later
+        "quote-props": [2, "consistent"],
+        "space-unary-ops": 2,
+        "comma-dangle": ["error", "never"]
+    }
+}

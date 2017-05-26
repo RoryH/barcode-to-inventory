@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title Barcode to Inventory POC
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+  body
+    div#mainMenu
+      button.live-capture-button Live Barcode scanner
+      button.capture-photo-button  Take photo of Barcode
+      
+    div#liveCapture.live-capture-container
+      div#cameraOutput.camera-output
+    
+    div#result
+      div.result-dump
+    
+    
+    script(src="public/bundle.js", type="text/javascript")
