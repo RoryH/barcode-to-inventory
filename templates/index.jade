@@ -3,10 +3,13 @@ html
   head
     title Barcode to Inventory POC
     meta(name="viewport", content="width=device-width, initial-scale=1")
-  body
+  body.loading
+    div.loading-overlay
     div#mainMenu
+      button.switch-camera Switch Live Camera
       button.live-capture-button Live Barcode scanner
       button.capture-photo-button  Take photo of Barcode
+      button.stop-capture Stop it!
       
     div#liveCapture.live-capture-container
       div#cameraOutput.camera-output

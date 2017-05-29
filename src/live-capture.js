@@ -1,8 +1,9 @@
 import Quagga from 'quagga';
+import { merge } from 'lodash';
 
-export default {
-  begin: () => {
-    Quagga.init({
+class LiveCapture {
+  static begin(opts) {
+    const options = {
       numOfWorkers: navigator.hardwareConcurrency || 4,
       inputStream: {
         name: 'Live',
@@ -15,7 +16,9 @@ export default {
           'upc_e_reader'
         ]
       }
-    }, (err) => {
+    };
+
+    Quagga.init(merge(options, opts), (err) => {
       const dumpDiv = document.querySelector('#result .result-dump');
       if (err) {
         console.log(err);
@@ -30,4 +33,21 @@ export default {
       Quagga.start();
     });
   }
-};
+
+  static getVideoInputDeviceIds() {
+    return new Promise((resolve, reject) => {
+      navigator.mediaDevices.enumerateDevices().then((devices) => {
+        resolve(devices.filter(dev => dev.kind === 'videoinput'));
+      }).catch(() => {
+        reject();
+      });
+    });
+  }
+
+  static stopCapture() {
+    Quagga.stop();
+  }
+}
+
+
+export default LiveCapture;

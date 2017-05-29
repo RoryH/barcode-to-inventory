@@ -4,12 +4,13 @@
   "description": "Scan a barcode in the browser",
   "main": "app/barcode-to-inventory.js",
   "scripts": {
+    "dev": "run-p start watch",
     "start": "node app/barcode-to-inventory.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack -w"
   },
-  "engines" : {
-    "node" : ">=7.6"
+  "engines": {
+    "node": ">=7.6"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
   "dependencies": {
     "express": "^4.15.3",
     "jade": "^1.11.0",
+    "lodash": "^4.17.4",
     "quagga": "^0.11.6",
     "webrtc-adapter": "^3.4.3"
   },
@@ -43,6 +45,7 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-react": "^7.0.1",
     "node-sass": "^4.5.3",
+    "npm-run-all": "^4.0.2",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.1",
     "uglify-es": "github:mishoo/UglifyJS2#harmony",
