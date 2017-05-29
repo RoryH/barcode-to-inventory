@@ -2,7 +2,12 @@ import Quagga from 'quagga';
 import { merge } from 'lodash';
 
 class LiveCapture {
+  constructor() {
+    this.started = false;
+  }
+
   static begin(opts) {
+    this.stopCapture();
     const options = {
       numOfWorkers: navigator.hardwareConcurrency || 4,
       inputStream: {
@@ -28,9 +33,10 @@ class LiveCapture {
       Quagga.onDetected((result) => {
         const json = JSON.stringify(result, null, 2);
         dumpDiv.innerHTML = `Code: ${result.codeResult.code}<br /><br /><pre>${json}</pre>`;
-        Quagga.stop();
+        this.stopCapture();
       });
       Quagga.start();
+      this.started = true;
     });
   }
 
@@ -45,7 +51,9 @@ class LiveCapture {
   }
 
   static stopCapture() {
-    Quagga.stop();
+    if (this.started) {
+      Quagga.stop();
+    }
   }
 }
 

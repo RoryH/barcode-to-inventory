@@ -7,17 +7,15 @@ html
     div.loading-overlay
       span.wheel
     div#app
-      div#mainMenu
-        button.switch-camera Switch Live Camera
-        button.live-capture-button Live Barcode scanner
-        button.capture-photo-button  Take photo of Barcode
-        button.stop-capture Stop it!
         
       div#liveCapture.live-capture-container
+        button.switch-camera Switch Live Camera
         div#cameraOutput.camera-output
+        button.stop-capture Stop it!
         
       div#photoCapture.photo-capture-container
-        input(type="file", accept="image/*", capture="camera")
+        div.psuedo-photo-input Take Photo
+          input(type="file", accept="image/*", capture="camera")
       
       div#result
         div.result-dump
