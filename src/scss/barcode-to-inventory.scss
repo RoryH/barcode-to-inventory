@@ -2,6 +2,8 @@
 
 body {
   font-family: sans-serif;
+  padding: 0;
+  margin: 0;
 }
 
 div.loading-overlay {
@@ -39,10 +41,20 @@ button {
 }
 
 .camera-output {
+  position: relative;
   canvas {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
-  video {
+  video, canvas {
+    width: 100%;
+  }
+}
+
+.photo-output {
+
+  img {
     width: 100%;
   }
 }

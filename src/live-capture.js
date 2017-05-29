@@ -1,27 +1,21 @@
 import Quagga from 'quagga';
 import { merge } from 'lodash';
+import baseQuaggaConfig from './base-quagga-config';
 
 class LiveCapture {
   constructor() {
     this.started = false;
   }
 
-  static begin(opts) {
+  begin(opts) {
     this.stopCapture();
-    const options = {
-      numOfWorkers: navigator.hardwareConcurrency || 4,
+    const options = Object.assign({}, baseQuaggaConfig, {
       inputStream: {
         name: 'Live',
         type: 'LiveStream',
         target: document.querySelector('#cameraOutput')    // Or '#yourElement' (optional)
-      },
-      decoder: {
-        readers: [
-          'upc_reader',
-          'upc_e_reader'
-        ]
       }
-    };
+    });
 
     Quagga.init(merge(options, opts), (err) => {
       const dumpDiv = document.querySelector('#result .result-dump');
@@ -38,6 +32,32 @@ class LiveCapture {
       Quagga.start();
       this.started = true;
     });
+
+    Quagga.onProcessed((result) => {
+      const drawingCtx = Quagga.canvas.ctx.overlay;
+      const drawingCanvas = Quagga.canvas.dom.overlay;
+      const cWidth = parseInt(drawingCanvas.getAttribute('width'), 10);
+      const cHeight = parseInt(drawingCanvas.getAttribute('height'), 10);
+
+      if (result) {
+        if (result.boxes) {
+          drawingCtx.clearRect(0, 0, cWidth, cHeight);
+          result.boxes.filter(box => box !== result.box).forEach((box) => {
+            Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, { color: 'green', lineWidth: 2 });
+          });
+        }
+
+        if (result.box) {
+          Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, { color: '#00F', lineWidth: 2 });
+        }
+
+        if (result.codeResult && result.codeResult.code) {
+          console.log(result);
+          drawingCtx.drawImage(document.querySelector('video'), 0, 0, cWidth, cHeight);
+          Quagga.ImageDebug.drawPath(result.line, { x: 'x', y: 'y' }, drawingCtx, { color: 'red', lineWidth: 3 });
+        }
+      }
+    });
   }
 
   static getVideoInputDeviceIds() {
@@ -50,7 +70,7 @@ class LiveCapture {
     });
   }
 
-  static stopCapture() {
+  stopCapture() {
     if (this.started) {
       Quagga.stop();
     }
