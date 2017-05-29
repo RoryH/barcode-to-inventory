@@ -5,17 +5,22 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1")
   body.loading
     div.loading-overlay
-    div#mainMenu
-      button.switch-camera Switch Live Camera
-      button.live-capture-button Live Barcode scanner
-      button.capture-photo-button  Take photo of Barcode
-      button.stop-capture Stop it!
+      span.wheel
+    div#app
+      div#mainMenu
+        button.switch-camera Switch Live Camera
+        button.live-capture-button Live Barcode scanner
+        button.capture-photo-button  Take photo of Barcode
+        button.stop-capture Stop it!
+        
+      div#liveCapture.live-capture-container
+        div#cameraOutput.camera-output
+        
+      div#photoCapture.photo-capture-container
+        input(type="file", accept="image/*", capture="camera")
       
-    div#liveCapture.live-capture-container
-      div#cameraOutput.camera-output
-    
-    div#result
-      div.result-dump
+      div#result
+        div.result-dump
     
     
     script(src="public/bundle.js", type="text/javascript")

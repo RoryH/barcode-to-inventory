@@ -1,0 +1,40 @@
+@mixin loading-wheel($circleRadius) {
+  border-radius: 50%;
+  position: absolute;
+  height: $circleRadius * 2;
+  width: $circleRadius * 2;
+  overflow: hidden;
+  left: calc(50% - #{$circleRadius / 2});
+  top: calc(50% - #{$circleRadius / 2});
+  animation-name: spinning;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  filter: blur(0.5px);
+  -webkit-filter: blur(0.5px);
+
+  background: linear-gradient(150deg, #faf046 50%, transparent 51%),
+    linear-gradient(210deg, #e5181b 50%, transparent 51%),
+    linear-gradient(270deg, #b43797 50%, transparent 51%);
+  &:after {
+    position: absolute;
+    width:  $circleRadius;
+    height:  $circleRadius * 2;
+    content: '';
+    background-image: linear-gradient(330deg, #3f55aa 38%, transparent 38.5%),
+      linear-gradient(30deg, #50c4d2 60%, transparent 51%),
+      linear-gradient(90deg, #56bb3c 100%, transparent 51%);
+    z-index: 1;
+  }
+
+  @keyframes spinning {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+}
