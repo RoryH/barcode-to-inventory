@@ -10,16 +10,16 @@ html
         
       div#liveCapture.live-capture-container
         button.switch-camera Switch Live Camera
+        button.scan-barcode Scan Barcode
         div#cameraOutput.camera-output
-        button.stop-capture Stop it!
         
       div#photoCapture.photo-capture-container
-        div.psuedo-photo-input Take Photo
+        div.psuedo-photo-input Take Photo of Barcode
           input(type="file", accept="image/*", capture="camera")
         div.photo-output
       
       div#result
-        div.result-dump
+        pre.result-dump
     
     
     script(src="public/bundle.js", type="text/javascript")

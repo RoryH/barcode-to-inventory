@@ -2,7 +2,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
-  entry: './src/barcode-to-inventory.js',
+  entry: './src/BarcodeToInventory.js',
   output: {
     filename: 'public/bundle.js'
   },

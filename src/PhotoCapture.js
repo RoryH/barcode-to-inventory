@@ -4,6 +4,7 @@ import baseQuaggaConfig from './base-quagga-config';
 class PhotoCapture {
   constructor() {
     this.inputField;
+    this.doneCallback = null;
   }
 
   init(opts) {
@@ -12,6 +13,9 @@ class PhotoCapture {
     }
     this.inputField = opts.input;
     this.outputDiv = opts.outputDiv;
+    if (typeof opts.doneCallback === 'function') {
+      this.doneCallback = opts.doneCallback;
+    }
 
     this.inputField.addEventListener('change', (e) => {
       this.processPhoto(e).then(this.renderAndProcessPhoto.bind(this));
@@ -27,7 +31,6 @@ class PhotoCapture {
       const reader = new FileReader();
 
       reader.onloadend = (evt) => {
-        console.log('read done');
         if (evt.target.readyState === FileReader.DONE) { // DONE == 2
           resolve(evt.target.result);
         }
@@ -37,28 +40,17 @@ class PhotoCapture {
       };
 
       reader.readAsDataURL(file);
-      console.log('reading');
     });
   }
 
   renderAndProcessPhoto(dataUrl) {
-    console.log('here');
-
-    this.outputDiv.querySelectorAll('img').forEach(img => img.remove());
-    const img = document.createElement('img');
-    const dumpDiv = document.querySelector('#result .result-dump');
-
-    img.src = dataUrl;
-    this.outputDiv.appendChild(img);
-
     Quagga.decodeSingle(Object.assign({}, baseQuaggaConfig, {
       src: dataUrl // or 'data:image/jpg;base64,' + data
     }), (result) => {
       if (result && result.codeResult) {
-        const json = JSON.stringify(result, null, 2);
-        dumpDiv.innerHTML = `Code: ${result.codeResult.code}<br /><br /><pre>${json}</pre>`;
+        this.doneCallback(result.codeResult.code, dataUrl);
       } else {
-        console.log(result || 'Nothing happened here!');
+        console.log(result || 'Failed to identify Barcode.');
       }
     });
   }
