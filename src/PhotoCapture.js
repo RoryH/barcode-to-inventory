@@ -4,6 +4,7 @@ import baseQuaggaConfig from './baseQuaggaConfig';
 class PhotoCapture {
   constructor() {
     this.inputField;
+    this.processingCallback = null;
     this.doneCallback = null;
   }
 
@@ -16,6 +17,7 @@ class PhotoCapture {
     if (typeof opts.doneCallback === 'function') {
       this.doneCallback = opts.doneCallback;
     }
+    this.processingCallback = typeof opts.processingCallback === 'function' ? opts.processingCallback : null;
 
     this.inputField.addEventListener('change', (e) => {
       this.processPhoto(e).then(this.renderAndProcessPhoto.bind(this));
@@ -23,6 +25,9 @@ class PhotoCapture {
   }
 
   processPhoto() {
+    if (typeof this.processingCallback === 'function') {
+      this.processingCallback();
+    }
     return new Promise((resolve, reject) => {
       if (this.inputField.files.length === 0) {
         reject('at least one photo should be selected.');

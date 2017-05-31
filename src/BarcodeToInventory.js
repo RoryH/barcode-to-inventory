@@ -39,6 +39,7 @@ class BarcodeToInventory {
       this.photoCapture = new PhotoCapture();
       this.photoCapture.init({
         input: document.querySelector('.psuedo-photo-input input'),
+        processingCallback: BarcodeToInventory.busyCallback,
         doneCallback: BarcodeToInventory.photoScanCallback
       });
       document.body.classList.remove('loading');
@@ -78,12 +79,17 @@ class BarcodeToInventory {
   }
 
   static photoScanCallback(code, dataUrl) {
+    document.body.classList.remove('loading');
     const outputDiv = document.querySelector('.photo-output');
     BarcodeToInventory.deleteNodeChildren(outputDiv);
     const img = document.createElement('img');
     img.src = dataUrl;
     outputDiv.appendChild(img);
     BarcodeToInventory.handleResult(code);
+  }
+
+  static busyCallback() {
+    document.body.classList.add('loading');
   }
 
   static handleResult(code) {
