@@ -1,7 +1,7 @@
 export default {
   locator: {
     halfSample: false,
-    patchSize: 'small'
+    patchSize: 'medium'
   },
   decoder: {
     readers: [

@@ -4,8 +4,8 @@
   height: $circleRadius * 2;
   width: $circleRadius * 2;
   overflow: hidden;
-  left: calc(50% - #{$circleRadius / 2});
-  top: calc(50% - #{$circleRadius / 2});
+  left: calc(50% - #{$circleRadius});
+  top: calc(40% - #{$circleRadius});
   animation-name: spinning;
   animation-duration: 0.8s;
   animation-iteration-count: infinite;
