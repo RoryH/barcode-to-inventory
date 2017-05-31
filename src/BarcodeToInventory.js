@@ -87,7 +87,13 @@ class BarcodeToInventory {
   }
 
   static handleResult(code) {
-    document.querySelector('.result-dump').appendChild(document.createTextNode(`${code}\n`));
+    const resultDump = document.querySelector('.result-dump');
+    if (code === null) {
+      resultDump.appendChild(document.createTextNode('Failed to scan Barcode.\n'));
+    } else {
+      resultDump.appendChild(document.createTextNode(`${code}\n`));
+    }
+
   }
 
   addEvents() {

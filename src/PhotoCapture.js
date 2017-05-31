@@ -1,5 +1,5 @@
 import Quagga from 'quagga';
-import baseQuaggaConfig from './base-quagga-config';
+import baseQuaggaConfig from './baseQuaggaConfig';
 
 class PhotoCapture {
   constructor() {
@@ -50,7 +50,7 @@ class PhotoCapture {
       if (result && result.codeResult) {
         this.doneCallback(result.codeResult.code, dataUrl);
       } else {
-        console.log(result || 'Failed to identify Barcode.');
+        this.doneCallback(null, dataUrl);
       }
     });
   }

@@ -1,6 +1,6 @@
 import Quagga from 'quagga';
 import { countBy, identity, merge, pickBy, without } from 'lodash';
-import baseQuaggaConfig from './base-quagga-config';
+import baseQuaggaConfig from './baseQuaggaConfig';
 
 export const MIN_RESULTS_THRESHOLD = 5;
 let instance;
